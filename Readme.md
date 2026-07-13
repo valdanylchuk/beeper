@@ -86,4 +86,4 @@ I think the best way to contribute is to clone/fork it, and build something else
 
 Have fun!
 
-https://mini000.itch.io/beeper
+Web version link again: https://mini000.itch.io/beeper
