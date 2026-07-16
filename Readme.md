@@ -9,6 +9,10 @@ Play with the web version: https://mini000.itch.io/beeper
 
 ![beeper screenshot](img/beeper-screen800.png "beeper")
 
+Demo video on Tanmatsu communicator (esp32-p4) - click to play:
+
+[![Watch the video](https://img.youtube.com/vi/uCH9XYZ7QB0/maxresdefault.jpg)](https://youtu.be/uCH9XYZ7QB0)
+
 ## Feature scope: what is beeper and why?
 
 **beeper** is an experiment in essentialism, a casual music toy, and a learning tool. Its strength is in simplicity.

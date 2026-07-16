@@ -5,7 +5,8 @@
  * and as wasm via emscripten and xterm.js.
  *
  *   Up/Down, Tab/Shift-Tab  move focus through the control list
- *   Left/Right              adjust (fine); PgUp/PgDn coarse; Home/End limits
+ *   Left/Right              adjust (fine); Shift = coarse; PgUp/PgDn coarse
+ *   Home/End, Ctrl-Left/Right  jump to min/max
  *   Space/Enter             toggle / cycle the focused choice control
  *   1-9 0 - =, , / .        select preset ('*' in the title = edited)
  *   s                       solo (mute the accompaniment voice)
@@ -287,10 +288,12 @@ static bool handle(app *a, tui_key k)
         a->focus = tui_focus_step(a->focus, NCTL, k.shift ? -1 : 1);
         break;
     case TUI_KEY_LEFT:
-        ctl_set(a, id, step_value(id, v, d, -1, k.shift));
+        if (k.ctrl) ctl_set(a, id, d->min);    /* Home fallback */
+        else ctl_set(a, id, step_value(id, v, d, -1, k.shift));
         break;
     case TUI_KEY_RIGHT:
-        ctl_set(a, id, step_value(id, v, d, 1, k.shift));
+        if (k.ctrl) ctl_set(a, id, d->max);    /* End fallback */
+        else ctl_set(a, id, step_value(id, v, d, 1, k.shift));
         break;
     case TUI_KEY_PGUP:
         ctl_set(a, id, step_value(id, v, d, 1, true));
