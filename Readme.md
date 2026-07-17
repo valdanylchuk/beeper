@@ -22,11 +22,11 @@ and plugins out there, but they have 40-50 knobs to navigate, which can be overw
 **beeper** has only 16 controls, so about one-third the norm, carefully selected to enable a nice range of sounds without clutter.
 It turned out surprisingly capable and fun to play with. It has no chord polyphony or stereo. It does support two instrument tracks plus a simple drum track for the demo loops.
 
-The are only 12 built-in sound presets (which you can modify in any way but not save) and 12 demo sequences. No MIDI input, no user tracks or presets, no saving of results. I might build something on this basis in future, but for this experiment, that was all out of scope. The whole app is 1,800 lines in C, not counting the TUI library.
+There are only 12 built-in sound presets (which you can modify in any way but not save) and 12 demo sequences. No MIDI input, no user tracks or presets, no saving of results. I might build something on this basis in future, but for this experiment, that was all out of scope. The whole app is 1,800 lines in C, not counting the TUI library.
 
 You may recognize some of the demo loops. They are only 4 bars each, reproduced definitely at hobbyist level, and the sounds do not aspire to match the originals (most cannot be matched within this feature set). As this is for educational purposes, I hope this qualifies as fair use. All rights and credit for the tunes belong to the original authors.
 
-It turned out massive fun to play around with those loops and presets! When there are only that many controls, you adjust anything, and you often get a distict and interesting new sound. Also there are 144 combinations only from trying each preset on every loop.
+It turned out massive fun to play around with those loops and presets! When there are only that many controls, you adjust anything, and you often get a distinct and interesting new sound. Also there are 144 combinations only from trying each preset on every loop.
 
 ## Sound controls
 
@@ -50,7 +50,7 @@ It turned out massive fun to play around with those loops and presets! When ther
 
 10. Sustain: make note last long at full volume. Combines two traditional sustain+release sliders into one checkbox. May be infuriating for the pros, but easy for beginners. As you see, still a nice range of sounds can work with this simplification. Big change in sound, sometimes fun.
 
-11. Glide: make notes change smoothly into each other, intead of making steps. You can make a whistle or a siren sound this way. Big change in sound, sometimes fun.
+11. Glide: make notes change smoothly into each other, instead of making steps. You can make a whistle or a siren sound this way. Big change in sound, sometimes fun.
 
 12. Drive: A popular control. Extra boost early in the mix. Combined with the limiter, makes the instruments grittier, adding that amp buzz.
 
@@ -80,7 +80,7 @@ It turned out massive fun to play around with those loops and presets! When ther
 
 ## Licence
 
-This is free software under MIT License. See [LICENSE](LISENSE) for details.
+This is free software under MIT License. See [LICENSE](LICENSE) for details.
 
 ## Contributing
 
