@@ -9,20 +9,82 @@
 <style>
   html, body {
     margin: 0; height: 100%;
-    background: #0a0a0a; color: #ddd;
+    color: #ddd;
     font-family: ui-monospace, Menlo, monospace;
     display: flex; align-items: center; justify-content: center;
   }
-  #wrap { position: relative; }
-  #term { padding: 8px; background: #000; border: 1px solid #222; }
+  /* Backdrop: dark slate matching the TUI, with a faint diagonal
+     hatch + soft vignette. Sits only around the terminal, never
+     under text. */
+  body {
+    background:
+      radial-gradient(ellipse at center,
+        rgba(79, 214, 224, 0.06) 0%, rgba(0,0,0,0) 60%),
+      repeating-linear-gradient(45deg,
+        rgba(79, 214, 224, 0.028) 0px, rgba(79, 214, 224, 0.028) 1px,
+        transparent 1px, transparent 7px),
+      linear-gradient(180deg, #21262a 0%, #191d20 55%, #14171a 100%);
+  }
+  #wrap {
+    position: relative;
+    border: 1px solid #3a4449;
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 1px #0c0e10,
+      0 0 28px rgba(79, 214, 224, 0.10),
+      0 8px 32px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+  }
+  /* thin accent strip along the top of the frame */
+  #wrap::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg,
+      transparent, #3fb8c2 30%, #4fd6e0 50%, #3fb8c2 70%, transparent);
+    z-index: 20; pointer-events: none;
+  }
+  #term { padding: 10px 12px; background: #101314; }
   #start {
     position: absolute; inset: 0; z-index: 10;
     display: flex; flex-direction: column; gap: 1em;
     align-items: center; justify-content: center;
-    background: #000; cursor: pointer; text-align: center;
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(79, 214, 224, 0.02) 0px, rgba(79, 214, 224, 0.02) 1px,
+        transparent 1px, transparent 7px),
+      #101314;
+    cursor: pointer; text-align: center;
   }
-  #start h1 { color: #4fd6e0; font-size: 1.4em; margin: 0; }
-  #start p  { color: #888; margin: 0; }
+  #start .panel {
+    border: 1px solid #33484c;
+    border-radius: 4px;
+    padding: 1.6em 2.8em;
+    display: flex; flex-direction: column; gap: 0.9em;
+    background: rgba(16, 19, 20, 0.85);
+    box-shadow: 0 0 24px rgba(79, 214, 224, 0.08) inset;
+  }
+  #start h1 {
+    color: #4fd6e0; font-size: 1.5em; margin: 0;
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 12px rgba(79, 214, 224, 0.45);
+  }
+  #start h1::before, #start h1::after { color: #33484c; }
+  #start h1::before { content: "── "; }
+  #start h1::after  { content: " ──"; }
+  #start p  { color: #8a949a; margin: 0; }
+  #start .go {
+    color: #e6c15c; font-weight: bold;
+    border: 1px solid #5c5230;
+    border-radius: 3px;
+    padding: 0.45em 1.2em;
+    margin-top: 0.3em;
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  #start:hover .go {
+    background: rgba(230, 193, 92, 0.10);
+    box-shadow: 0 0 14px rgba(230, 193, 92, 0.25);
+  }
+  #start .hint { color: #5c666c; font-size: 0.85em; }
   .xterm { cursor: default; }
 </style>
 </head>
@@ -30,9 +92,12 @@
 <div id="wrap">
   <div id="term"></div>
   <div id="start">
-    <h1>beeper</h1>
-    <p>a toy subtractive synth &mdash; keyboard required</p>
-    <p><b style="color:#eee">click to start audio</b></p>
+    <div class="panel">
+      <h1>beeper</h1>
+      <p>a toy subtractive synth</p>
+      <p class="go">click to start audio</p>
+      <p class="hint">keyboard required &mdash; arrows adjust, 1&ndash;9 presets</p>
+    </div>
   </div>
 </div>
 
@@ -45,7 +110,7 @@
     scrollback: 0,
     fontSize: 15,
     fontFamily: 'ui-monospace, Menlo, Consolas, monospace',
-    theme: { background: '#000000', foreground: '#cccccc' },
+    theme: { background: '#101314', foreground: '#cccccc' },
   });
   term.open(document.getElementById('term'));
   window.__term = term;   // debug/smoke-test handle
